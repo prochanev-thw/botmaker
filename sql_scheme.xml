@@ -37,7 +37,7 @@
 		<type label="SET" length="1" sql="SET" quote=""/>
 		<type label="Bit" length="0" sql="bit" quote=""/>
 	</group>
-</datatypes><table x="104" y="54" name="Account">
+</datatypes><table x="303" y="375" name="Account">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -55,8 +55,18 @@
 </key>
 <comment>Пользователи сервиса</comment>
 </table>
-<table x="305" y="52" name="Bot">
+<table x="77" y="380" name="Bot">
 <row name="id" null="1" autoincrement="1">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="description" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="owner" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default><relation table="Account" row="id" />
+</row>
+<row name="short_url" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="telegram_id" null="1" autoincrement="0">
@@ -65,17 +75,15 @@
 <row name="token_hash" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="account_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Account" row="id" />
-</row>
-<row name="is_enable" null="1" autoincrement="0">
+<row name="welcome_message" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="dialog_schema_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="dialog_schema" row="id" />
-</row>
+<row name="status" null="1" autoincrement="0">
+<datatype>ENUM</datatype>
+<default>NULL</default></row>
+<row name="schema" null="1" autoincrement="0">
+<datatype>MEDIUMTEXT</datatype>
+<default>NULL</default></row>
 <row name="created_at" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -98,11 +106,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="554" y="52" name="BotChat">
+<table x="300" y="67" name="BotChat">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="telegram_user_id" null="1" autoincrement="0">
+<row name="telegram_user" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="TelegramUser" row="id" />
 </row>
@@ -117,11 +125,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="268" y="338" name="Emails">
+<table x="505" y="373" name="Email">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="account_id" null="1" autoincrement="0">
+<row name="owner" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="Account" row="id" />
 </row>
@@ -130,50 +138,19 @@
 <default>NULL</default></row>
 <row name="polling_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Polling" row="id" />
-</row>
+<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 <comment>Рассылки</comment>
 </table>
-<table x="551" y="254" name="dialog_schema">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="schema_hash" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="schema_value" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="552" y="435" name="Polling">
-<row name="id" null="1" autoincrement="1">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<row name="account_id" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Account" row="id" />
-</row>
-<row name="created_at" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
-<key type="PRIMARY" name="">
-<part>id</part>
-</key>
-</table>
-<table x="803" y="377" name="PollingResults">
+<table x="975" y="372" name="PollingResults">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="polling_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
-<default>NULL</default><relation table="Polling" row="id" />
-</row>
+<default>NULL</default></row>
 <row name="telegram_user_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="TelegramUser" row="id" />
